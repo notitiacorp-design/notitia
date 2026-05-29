@@ -3,163 +3,172 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CB Plomberie — Artisan plombier au Grau d'Agde</title>
+<title>CB Plomberie — Plombier chauffagiste, Grau d'Agde</title>
 <style>
-  :root { --slate: #1e2329; --copper: #c2714a; --concrete: #e8e4df; --paper: #faf8f5; --steel: #8a929a; }
+  :root { --ink: #161616; --copper: #c2714a; --warm: #f5efe8; --line: #e0d8cf; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #1e2329; background: var(--paper); }
-  
-  /* Monogram logo */
-  .logo { display: flex; align-items: center; gap: 6px; }
-  .mono { width: 38px; height: 38px; position: relative; }
-  .mono .pipe { position: absolute; background: var(--copper); border-radius: 4px; }
-  .mono .p1 { top: 2px; left: 2px; width: 8px; height: 34px; }
-  .mono .p2 { top: 2px; left: 14px; width: 20px; height: 8px; }
-  .mono .p3 { top: 14px; left: 14px; width: 8px; height: 22px; }
-  .mono .p4 { top: 28px; left: 14px; width: 20px; height: 8px; }
-  .logo-text { font-weight: 700; font-size: 1.1rem; letter-spacing: -0.3px; color: var(--slate); }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: var(--ink); background: #fff; }
 
-  .topline { background: var(--slate); color: #fff; font-size: .78rem; text-align: center; padding: 8px; letter-spacing: .5px; }
-  
-  .hero { padding: 100px 24px 60px; text-align: center; position: relative; overflow: hidden; }
-  .hero-bg { position: absolute; inset: 0; }
-  .hero-bg::before { content: ''; position: absolute; top: -40%; right: -20%; width: 600px; height: 600px; border: 2px solid rgba(194,113,74,.08); border-radius: 50%; }
-  .hero-bg::after { content: ''; position: absolute; bottom: -30%; left: -15%; width: 400px; height: 400px; border: 1px solid rgba(194,113,74,.06); border-radius: 50%; }
-  .hero .mono-large { margin: 0 auto 20px; width: 72px; height: 72px; position: relative; }
-  .hero .mono-large .pipe { position: absolute; background: var(--copper); border-radius: 5px; }
-  .hero .mono-large .mp1 { top: 4px; left: 4px; width: 14px; height: 64px; }
-  .hero .mono-large .mp2 { top: 4px; left: 26px; width: 40px; height: 14px; }
-  .hero .mono-large .mp3 { top: 26px; left: 26px; width: 14px; height: 42px; }
-  .hero .mono-large .mp4 { top: 54px; left: 26px; width: 40px; height: 14px; }
-  .hero h1 { font-size: 2.4rem; font-weight: 700; letter-spacing: -0.5px; color: var(--slate); margin-bottom: 6px; }
-  .hero .tag { font-size: 1.15rem; color: var(--steel); font-weight: 400; margin-bottom: 8px; }
-  .hero .est { font-size: .85rem; color: var(--copper); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; }
-  
-  .hero-stats { display: flex; justify-content: center; gap: 40px; margin-top: 30px; }
-  .hs { text-align: center; }
-  .hs .n { font-size: 1.8rem; font-weight: 800; color: var(--slate); line-height: 1; }
-  .hs .l { font-size: .72rem; color: var(--steel); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+  .header { display: flex; justify-content: space-between; align-items: center; padding: 20px 28px; border-bottom: 1px solid var(--line); }
+  .logo { display: flex; align-items: center; gap: 8px; }
+  .logo mark { background: none; }
+  .logo .pipe-icon { display: flex; gap: 3px; }
+  .pipe-icon span { width: 5px; height: 22px; background: var(--copper); border-radius: 2px; }
+  .pipe-icon span:nth-child(2) { height: 14px; align-self: flex-end; }
+  .header .phone-pill { background: var(--copper); color: #fff; padding: 10px 20px; font-weight: 700; font-size: .9rem; border-radius: 2px; }
 
-  .story { max-width: 680px; margin: 0 auto; padding: 0 24px 50px; text-align: center; }
-  .story p { font-size: 1.1rem; color: #5a6168; line-height: 1.8; }
+  .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 420px; }
+  .hero-text { padding: 60px 28px 40px 32px; display: flex; flex-direction: column; justify-content: center; }
+  .hero-text .overline { font-size: .75rem; text-transform: uppercase; letter-spacing: 3px; color: var(--copper); margin-bottom: 12px; }
+  .hero-text h1 { font-size: 2.8rem; font-weight: 800; letter-spacing: -1px; line-height: 1.05; }
+  .hero-text .line2 { color: var(--copper); }
+  .hero-text .sub { margin-top: 12px; font-size: 1.05rem; color: #777; max-width: 360px; }
+  .hero-visual { background: var(--warm); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+  .hero-visual .stat-block { text-align: center; z-index: 1; }
+  .hero-visual .stat-block .giant { font-size: 5rem; font-weight: 900; color: var(--copper); line-height: 1; }
+  .hero-visual .stat-block .label { font-size: .85rem; color: #888; text-transform: uppercase; letter-spacing: 2px; margin-top: 4px; }
+  .hero-visual::after { content: ''; position: absolute; width: 300px; height: 300px; border: 2px solid rgba(194,113,74,.1); border-radius: 50%; bottom: -100px; right: -80px; }
 
-  /* Services - as a process */
-  .services { max-width: 900px; margin: 0 auto; padding: 0 24px 50px; }
-  .services h2 { font-size: 1.1rem; color: var(--copper); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; text-align: center; }
-  .svc-list { display: flex; flex-direction: column; gap: 1px; background: #e8e4df; border-radius: 2px; overflow: hidden; }
-  .svc-row { display: flex; align-items: center; gap: 16px; padding: 18px 20px; background: #fff; }
-  .svc-row .num { font-size: .8rem; font-weight: 700; color: var(--copper); min-width: 28px; }
-  .svc-row strong { font-size: .95rem; color: var(--slate); }
-  .svc-row span { font-size: .85rem; color: var(--steel); flex: 1; text-align: right; }
-  
-  .quote-wall { background: var(--slate); color: #fff; padding: 70px 24px; text-align: center; position: relative; }
-  .quote-wall::before { content: '"'; position: absolute; top: 20px; left: 50%; transform: translateX(-50%); font-size: 8rem; color: rgba(255,255,255,.04); font-family: Georgia, serif; line-height: 1; }
-  .quote-wall blockquote { font-size: 1.25rem; max-width: 500px; margin: 0 auto 12px; font-style: italic; opacity: .9; position: relative; }
-  .quote-wall cite { font-size: .82rem; opacity: .5; font-style: normal; }
+  .reassurance { background: var(--ink); color: #fff; padding: 28px 32px; display: flex; justify-content: center; gap: 50px; }
+  .reassurance .item { display: flex; align-items: center; gap: 10px; font-size: .85rem; }
+  .reassurance .item .icon { font-size: 1.3rem; }
 
-  .zones { padding: 60px 24px; text-align: center; }
-  .zones h2 { font-size: 1rem; color: var(--copper); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 18px; }
-  .zone-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
-  .zone-item { padding: 7px 16px; border: 1px solid #d1cdc9; border-radius: 2px; font-size: .85rem; color: var(--slate); }
+  .intro { max-width: 600px; margin: 0 auto; padding: 60px 24px 40px; text-align: center; }
+  .intro p { font-size: 1.15rem; line-height: 1.85; color: #555; }
 
-  .emergency { background: #d94a3a; color: #fff; text-align: center; padding: 24px; }
-  .emergency p { font-weight: 600; font-size: 1rem; }
-  .emergency .tel { display: inline-block; margin-top: 8px; background: rgba(255,255,255,.15); padding: 10px 28px; border-radius: 2px; font-weight: 700; font-size: 1.05rem; }
+  .services { max-width: 880px; margin: 0 auto; padding: 0 24px 50px; }
+  .services h2 { font-size: .8rem; text-transform: uppercase; letter-spacing: 3px; color: var(--copper); margin-bottom: 24px; }
+  .svc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); }
+  .svc { background: #fff; padding: 30px 24px; }
+  .svc .num { font-size: .7rem; color: var(--copper); font-weight: 700; margin-bottom: 8px; }
+  .svc h3 { font-size: 1.05rem; margin-bottom: 6px; }
+  .svc p { color: #888; font-size: .9rem; line-height: 1.5; }
 
-  .footer { padding: 50px 24px 30px; text-align: center; font-size: .78rem; color: var(--steel); }
-  .footer .logo-sm { display: flex; align-items: center; justify-content: center; gap: 4px; margin-bottom: 6px; }
-  .footer .mono-sm { width: 20px; height: 20px; position: relative; }
-  .footer .mono-sm .pipe { position: absolute; background: var(--copper); border-radius: 2px; }
-  .footer .mono-sm .fp1 { top: 1px; left: 1px; width: 4px; height: 18px; }
-  .footer .mono-sm .fp2 { top: 1px; left: 7px; width: 11px; height: 4px; }
-  .footer .mono-sm .fp3 { top: 7px; left: 7px; width: 4px; height: 12px; }
-  .footer .mono-sm .fp4 { top: 15px; left: 7px; width: 11px; height: 4px; }
+  .testimonials { background: var(--warm); padding: 60px 24px; }
+  .testimonials h2 { text-align: center; font-size: .8rem; text-transform: uppercase; letter-spacing: 3px; color: var(--copper); margin-bottom: 28px; }
+  .test-grid { max-width: 800px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .test-card { background: #fff; padding: 24px; border: 1px solid var(--line); }
+  .test-card .stars { color: #e6a817; font-size: .9rem; letter-spacing: 2px; margin-bottom: 8px; }
+  .test-card p { font-size: .88rem; color: #555; font-style: italic; line-height: 1.5; }
+  .test-card .author { font-size: .75rem; color: #999; margin-top: 10px; }
+
+  .zones { padding: 50px 24px; text-align: center; }
+  .zones h2 { font-size: .8rem; text-transform: uppercase; letter-spacing: 3px; color: var(--copper); margin-bottom: 18px; }
+  .zones .tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+  .zones .tags span { border: 1px solid var(--line); padding: 8px 18px; font-size: .85rem; font-weight: 500; }
+
+  .cta-bottom { background: var(--copper); color: #fff; text-align: center; padding: 50px 24px; }
+  .cta-bottom .big { font-size: 1.5rem; font-weight: 700; margin-bottom: 6px; }
+  .cta-bottom .sub { opacity: .85; margin-bottom: 18px; }
+  .cta-bottom .btn { display: inline-block; background: #fff; color: var(--copper); padding: 14px 36px; font-weight: 700; font-size: 1rem; border-radius: 2px; }
+
+  .footer { padding: 40px 24px 24px; text-align: center; font-size: .75rem; color: #aaa; border-top: 1px solid var(--line); }
   .footer a { color: var(--copper); text-decoration: none; }
 </style>
 </head>
 <body>
 
-<div class="topline">Plombier chauffagiste — Grau d'Agde — 7j/7</div>
-
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="mono-large">
-    <div class="pipe mp1"></div><div class="pipe mp2"></div><div class="pipe mp3"></div><div class="pipe mp4"></div>
+<header class="header">
+  <div class="logo">
+    <div class="pipe-icon"><span></span><span></span><span></span></div>
+    <mark style="font-weight:700;font-size:1rem;background:none">CB Plomberie</mark>
   </div>
-  <h1>CB Plomberie</h1>
-  <p class="tag">On connaît chaque tuyau du quartier</p>
-  <p class="est">Installé depuis 2013</p>
-  <div class="hero-stats">
-    <div class="hs"><div class="n">3 200</div><div class="l">Interventions</div></div>
-    <div class="hs"><div class="n">13</div><div class="l">Ans d'activité</div></div>
-    <div class="hs"><div class="n">&lt;1h</div><div class="l">Dépannage</div></div>
-  </div>
-</section>
+  <div class="phone-pill">📞 Appeler</div>
+</header>
 
-<section class="story">
-  <p>Un plombier de quartier, c'est quelqu'un qui répond quand ça déborde un dimanche soir. Qui connaît les vieilles canalisations du Grau d'Agde. Qui vous dit le prix avant de commencer. CB Plomberie, c'est ça. Depuis 2013.</p>
+<div class="hero">
+  <div class="hero-text">
+    <p class="overline">Plombier chauffagiste</p>
+    <h1>Votre plombier<br><span class="line2">en moins d'une heure.</span></h1>
+    <p class="sub">Fuite, panne, installation. Un artisan qui connaît votre quartier et qui répond quand ça urge.</p>
+  </div>
+  <div class="hero-visual">
+    <div class="stat-block">
+      <div class="giant">3&nbsp;200</div>
+      <div class="label">Dépannages réalisés</div>
+    </div>
+  </div>
+</div>
+
+<div class="reassurance">
+  <div class="item"><span class="icon">⚡</span> Intervention en - d'1h</div>
+  <div class="item"><span class="icon">💶</span> Devis gratuit</div>
+  <div class="item"><span class="icon">🛡️</span> Garanti 1 an</div>
+</div>
+
+<section class="intro">
+  <p>13 ans que CB Plomberie dépanne les habitants d'Agde, du Grau d'Agde et du Cap d'Agde. Fuite un dimanche, chauffe-eau en panne un lundi de décembre, salle de bain à rénover. On connaît les canalisations du coin, on connaît les gens. Et on répond.</p>
 </section>
 
 <section class="services">
   <h2>Interventions</h2>
-  <div class="svc-list">
-    <div class="svc-row">
+  <div class="svc-grid">
+    <div class="svc">
       <div class="num">01</div>
-      <strong>Fuite d'eau — Recherche et réparation</strong>
-      <span>sur devis</span>
+      <h3>Dépannage urgent</h3>
+      <p>Fuite, canalisation bouchée, panne de chauffe-eau. Intervention sous 1 heure.</p>
     </div>
-    <div class="svc-row">
+    <div class="svc">
       <div class="num">02</div>
-      <strong>Chauffe-eau — Panne, entretien, remplacement</strong>
-      <span>sur devis</span>
+      <h3>Recherche de fuite</h3>
+      <p>Détection acoustique et thermique. On trouve sans casser.</p>
     </div>
-    <div class="svc-row">
+    <div class="svc">
       <div class="num">03</div>
-      <strong>Canalisation bouchée — Débouchage</strong>
-      <span>sur devis</span>
+      <h3>Chauffe-eau & chaudière</h3>
+      <p>Entretien annuel, détartrage, remplacement. Toutes marques.</p>
     </div>
-    <div class="svc-row">
+    <div class="svc">
       <div class="num">04</div>
-      <strong>Salle de bain — Rénovation complète</strong>
-      <span>sur devis</span>
+      <h3>Salle de bain</h3>
+      <p>Rénovation complète. Dépose, plomberie, pose, finitions.</p>
     </div>
-    <div class="svc-row">
+    <div class="svc">
       <div class="num">05</div>
-      <strong>Robinetterie, WC, lavabo — Installation</strong>
-      <span>sur devis</span>
+      <h3>Robinetterie & sanitaire</h3>
+      <p>WC, lavabo, évier, douche. Installation et remplacement.</p>
+    </div>
+    <div class="svc">
+      <div class="num">06</div>
+      <h3>Débouchage</h3>
+      <p>Canalisations, éviers, WC. Matériel professionnel, résultat garanti.</p>
     </div>
   </div>
 </section>
 
-<section class="quote-wall">
-  <blockquote>Appelé un samedi midi pour une fuite. Il était là en 40 minutes. Prix correct, boulot propre.</blockquote>
-  <cite>Habitante, résidence Les Dunes — Grau d'Agde</cite>
+<section class="testimonials">
+  <h2>Vos voisins nous font confiance</h2>
+  <div class="test-grid">
+    <div class="test-card">
+      <div class="stars">★★★★★</div>
+      <p>«&thinsp;Appelé un samedi midi pour une fuite sous l'évier. Il était là en 40 minutes. Boulot propre, prix annoncé respecté.&thinsp;»</p>
+      <div class="author">Mme Rodriguez, résidence Les Dunes — Grau d'Agde</div>
+    </div>
+    <div class="test-card">
+      <div class="stars">★★★★★</div>
+      <p>«&thinsp;Remplacement du ballon d'eau chaude. Devis clair, ponctuel, chantier nickel. On sent l'expérience.&thinsp;»</p>
+      <div class="author">M. Fabre, avenue de la Butte — Agde</div>
+    </div>
+  </div>
 </section>
 
 <section class="zones">
   <h2>Secteur d'intervention</h2>
-  <div class="zone-list">
-    <div class="zone-item">Agde</div>
-    <div class="zone-item">Le Grau d'Agde</div>
-    <div class="zone-item">Cap d'Agde</div>
-    <div class="zone-item">La Tamarissière</div>
-    <div class="zone-item">Marseillan</div>
+  <div class="tags">
+    <span>Agde</span><span>Le Grau d'Agde</span><span>Cap d'Agde</span><span>La Tamarissière</span><span>Marseillan</span>
   </div>
-  <p style="margin-top:20px;color:var(--steel);font-size:.85rem">24 Bis Avenue François Mas, 34300 Le Grau d'Agde</p>
+  <p style="margin-top:18px;color:#999;font-size:.82rem">24 Bis Avenue François Mas · 34300 Le Grau d'Agde · SIRET 797 471 091 00018</p>
 </section>
 
-<section class="emergency">
-  <p>Dépannage urgent — appelez directement</p>
-  <div class="tel">📞 Appeler CB Plomberie</div>
+<section class="cta-bottom">
+  <div class="big">Un plombier. Direct. Sans intermédiaire.</div>
+  <div class="sub">Vous appelez, on vient. C'est aussi simple que ça.</div>
+  <div class="btn">📞 Appeler CB Plomberie</div>
 </section>
 
 <footer class="footer">
-  <div class="logo-sm">
-    <div class="mono-sm"><div class="pipe fp1"></div><div class="pipe fp2"></div><div class="pipe fp3"></div><div class="pipe fp4"></div></div>
-    <span style="font-weight:700;font-size:.9rem">CB Plomberie</span>
-  </div>
-  <p>EI — SIRET 797 471 091 00018 — Grau d'Agde 34300</p>
-  <p style="margin-top:4px">Site par <a href="https://notitiacorp-design.github.io/notitia/">Notitia</a></p>
+  <p>CB Plomberie — EI — SIRET 797 471 091 00018</p>
+  <p style="margin-top:4px">Site créé par <a href="https://notitiacorp-design.github.io/notitia/">Notitia</a></p>
 </footer>
 
 </body>
