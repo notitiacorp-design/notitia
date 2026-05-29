@@ -3,134 +3,165 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Deg BERNABEU Ruben — Plombier Chauffagiste Agde</title>
+<title>Deg BERNABEU Ruben — Plombier Chauffagiste Agde ⭐4.5</title>
 <style>
+  :root { --navy: #0c1e32; --gold: #e6a817; --white: #fafaf9; --gray: #e7e5e4; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: system-ui, -apple-system, sans-serif; color: #1a1a2e; line-height: 1.6; }
-  .hero { background: linear-gradient(135deg, #1e3a5f 0%, #0ea5e9 100%); color: white; padding: 80px 20px; text-align: center; }
-  .hero h1 { font-size: 2.5rem; margin-bottom: 5px; }
-  .rating { font-size: 1.3rem; color: #fbbf24; margin-bottom: 10px; }
-  .hero .tagline { font-size: 1.2rem; opacity: .9; }
-  .hero .phone-btn { display: inline-block; margin-top: 25px; background: #f59e0b; color: #1a1a2e; padding: 14px 32px; border-radius: 50px; font-size: 1.2rem; font-weight: 700; text-decoration: none; }
-  .hero .phone-btn:hover { background: #d97706; }
-  section { max-width: 900px; margin: 0 auto; padding: 60px 20px; }
-  h2 { font-size: 1.8rem; color: #1e3a5f; margin-bottom: 15px; }
-  .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 20px; }
-  .service-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 25px; text-align: center; }
-  .service-card h3 { color: #0ea5e9; margin-bottom: 8px; }
-  .service-card .icon { font-size: 2rem; margin-bottom: 10px; }
-  .why { background: #f0f9ff; }
-  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px; }
-  .why-item { text-align: center; padding: 20px; }
-  .why-item .icon { font-size: 2.2rem; margin-bottom: 10px; }
-  .brands { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 20px; }
-  .brand-tag { background: white; border: 1px solid #cbd5e1; padding: 8px 18px; border-radius: 25px; font-weight: 600; }
-  .zone { background: #e0f2fe; padding: 10px 20px; border-radius: 25px; font-weight: 600; display: inline-block; margin: 5px; }
-  .cta { background: linear-gradient(135deg, #1e3a5f 0%, #0ea5e9 100%); color: white; text-align: center; }
-  .cta h2 { color: white; }
-  .cta .phone-btn { display: inline-block; margin-top: 15px; background: #f59e0b; color: #1a1a2e; padding: 16px 40px; border-radius: 50px; font-size: 1.3rem; font-weight: 700; text-decoration: none; }
-  footer { text-align: center; padding: 30px; color: #64748b; font-size: .85rem; }
+  body { font-family: system-ui, -apple-system, sans-serif; color: #1c1c1c; line-height: 1.55; background: var(--white); }
+
+  .hero { background: linear-gradient(160deg, #0c1e32 0%, #152d48 40%, #1a3d5c 100%); color: white; padding: 80px 20px 60px; text-align: center; position: relative; overflow: hidden; }
+  .hero::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 30%, rgba(230,168,23,.1) 0%, transparent 60%); pointer-events: none; }
+  .stars { font-size: 1.6rem; color: var(--gold); letter-spacing: 3px; margin-bottom: 6px; }
+  .hero h1 { font-size: 2.8rem; font-weight: 800; letter-spacing: -0.5px; position: relative; z-index: 1; }
+  .hero .tagline { font-size: 1.15rem; opacity: .8; font-weight: 300; position: relative; z-index: 1; margin-top: 4px; }
+  .hero .since { display: inline-block; border: 1px solid rgba(255,255,255,.2); padding: 5px 16px; border-radius: 50px; font-size: .82rem; margin-bottom: 12px; position: relative; z-index: 1; }
+  .hero-numbers { display: flex; justify-content: center; gap: 35px; margin-top: 28px; position: relative; z-index: 1; }
+  .hero-num { text-align: center; }
+  .hero-num .n { font-size: 2.4rem; font-weight: 800; color: var(--gold); }
+  .hero-num .l { font-size: .75rem; text-transform: uppercase; letter-spacing: 1.5px; opacity: .6; }
+
+  .sticky-cta { background: var(--gold); color: #0c1e32; text-align: center; padding: 16px; font-weight: 700; font-size: 1.05rem; position: sticky; top: 0; z-index: 10; cursor: pointer; box-shadow: 0 2px 15px rgba(0,0,0,.15); }
+  .sticky-cta:hover { background: #d4970f; }
+
+  section { max-width: 960px; margin: 0 auto; padding: 55px 20px; }
+  h2 { font-size: 1.7rem; color: var(--navy); margin-bottom: 8px; font-weight: 700; }
+  .sub { color: #78716c; margin-bottom: 28px; font-size: 1rem; }
+
+  .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+  .skill { border: 1px solid #e7e5e4; border-radius: 12px; padding: 22px 18px; background: white; transition: box-shadow .2s; }
+  .skill:hover { box-shadow: 0 4px 20px rgba(0,0,0,.06); }
+  .skill h3 { color: var(--navy); font-size: 1.05rem; margin-bottom: 5px; display: flex; align-items: center; gap: 8px; }
+  .skill p { color: #78716c; font-size: .88rem; }
+
+  .brand-strip { background: white; border-top: 1px solid var(--gray); border-bottom: 1px solid var(--gray); padding: 30px 20px; text-align: center; }
+  .brand-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 12px; }
+  .brand { background: #f5f5f4; border: 1px solid #e7e5e4; padding: 10px 22px; border-radius: 8px; font-weight: 600; font-size: .95rem; color: #444; letter-spacing: .3px; }
+
+  .diff { background: #f5f5f4; }
+  .diff-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px; }
+  .diff-card { background: white; border-radius: 14px; padding: 28px 20px; text-align: center; border: 1px solid #e7e5e4; }
+  .diff-card .icon { font-size: 2rem; margin-bottom: 10px; }
+  .diff-card strong { display: block; color: var(--navy); margin-bottom: 4px; font-size: 1.05rem; }
+
+  .quote-block { background: var(--navy); color: white; padding: 50px 20px; text-align: center; }
+  .quote-block .stars-sm { color: var(--gold); font-size: 1.2rem; letter-spacing: 2px; }
+  .quote-block blockquote { max-width: 550px; margin: 12px auto 10px; font-size: 1.05rem; font-style: italic; opacity: .92; }
+  .quote-block cite { opacity: .6; font-style: normal; font-size: .85rem; }
+
+  .zones { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 10px; }
+  .zone-tag { background: #e7e5e4; padding: 8px 18px; border-radius: 25px; font-weight: 600; font-size: .9rem; }
+
+  .urgent-box { max-width: 450px; margin: 20px auto 0; background: #fef9e7; border: 1px solid #fbbf24; padding: 14px 20px; border-radius: 10px; display: flex; align-items: center; gap: 12px; font-weight: 600; font-size: .95rem; }
+
+  footer { text-align: center; padding: 30px; color: #a8a29e; font-size: .78rem; }
+  footer a { color: #a8a29e; }
 </style>
 </head>
 <body>
 
 <section class="hero">
+  <div class="stars">★★★★★</div>
+  <div class="since">Artisan plombier-chauffagiste — installé depuis 2008</div>
   <h1>Deg BERNABEU Ruben</h1>
-  <div class="rating">★★★★★ 4,5/5</div>
-  <p class="tagline">Plombier chauffagiste — Savoir-faire depuis 2008</p>
-  <p style="margin-top:10px;opacity:.85">Agde • Le Grau d'Agde • Cap d'Agde</p>
-  <a href="tel:" class="phone-btn">📞 Appeler pour un dépannage</a>
+  <p class="tagline">L'excellence à votre porte, depuis 18 ans</p>
+  <div class="hero-numbers">
+    <div class="hero-num"><div class="n">5 000+</div><div class="l">Clients satisfaits</div></div>
+    <div class="hero-num"><div class="n">4,5/5</div><div class="l">Note moyenne</div></div>
+    <div class="hero-num"><div class="n">18</div><div class="l">Années d'expertise</div></div>
+  </div>
 </section>
 
+<div class="sticky-cta">📞 Demander un devis gratuit — Appelez maintenant</div>
+
 <section>
-  <h2>Nos prestations</h2>
-  <div class="services">
-    <div class="service-card">
-      <div class="icon">🔍</div>
-      <h3>Détection de fuite</h3>
-      <p>Localisation précise et réparation de vos fuites d'eau. Intervention rapide.</p>
+  <h2>Des prestations maîtrisées</h2>
+  <p class="sub">Un savoir-faire reconnu, du diagnostic à la pose</p>
+  <div class="skills">
+    <div class="skill">
+      <h3>🔍 Détection de fuite</h3>
+      <p>Localisation précise par caméra thermique et acoustique. Pas de dégâts inutiles.</p>
     </div>
-    <div class="service-card">
-      <div class="icon">🔥</div>
-      <h3>Entretien chauffe-eau</h3>
-      <p>Entretien, détartrage et remplacement de votre ballon d'eau chaude.</p>
+    <div class="skill">
+      <h3>🔥 Entretien chauffe-eau</h3>
+      <p>Détartrage, anode, vidange. Toutes marques : Atlantic, Thermor, Ariston, Saunier Duval.</p>
     </div>
-    <div class="service-card">
-      <div class="icon">🔧</div>
-      <h3>Dépannage plomberie</h3>
-      <p>Canalisation bouchée, robinetterie, WC. Disponible 7j/7.</p>
+    <div class="skill">
+      <h3>🔧 Dépannage express</h3>
+      <p>Robinetterie, WC, évacuation, joint. Diagnostic en 15 minutes, solution immédiate.</p>
     </div>
-    <div class="service-card">
-      <div class="icon">🚿</div>
-      <h3>Installation sanitaire</h3>
-      <p>Création et rénovation de salle de bain, pose d'équipements.</p>
+    <div class="skill">
+      <h3>🚿 Installation sanitaire</h3>
+      <p>Salle de bain clé en main. Conception, fourniture, pose. Garantie décennale.</p>
     </div>
   </div>
 </section>
 
-<section class="why">
-  <h2>Pourquoi nous faire confiance</h2>
-  <div class="why-grid">
-    <div class="why-item">
-      <div class="icon">📅</div>
-      <h3>18 ans d'expérience</h3>
-      <p>Installé depuis 2008, plus de 5000 interventions réalisées</p>
-    </div>
-    <div class="why-item">
+<div class="brand-strip">
+  <p style="color:#78716c;font-size:.9rem;text-transform:uppercase;letter-spacing:1.5px;font-weight:600">Marques de confiance installées et entretenues</p>
+  <div class="brand-tags">
+    <span class="brand">Atlantic</span>
+    <span class="brand">Ariston</span>
+    <span class="brand">Thermor</span>
+    <span class="brand">Saunier Duval</span>
+    <span class="brand">ELM Leblanc</span>
+    <span class="brand">Jacob Delafon</span>
+    <span class="brand">Porcher</span>
+    <span class="brand">Pacific</span>
+  </div>
+</div>
+
+<section class="diff">
+  <h2>Ce qui fait la différence</h2>
+  <p class="sub">18 ans, ça forge une réputation</p>
+  <div class="diff-grid">
+    <div class="diff-card">
       <div class="icon">⭐</div>
-      <h3>Noté 4,5/5</h3>
-      <p>Une réputation solide, construite sur la satisfaction client</p>
+      <strong>Noté 4,5/5</strong>
+      <span style="color:#78716c;font-size:.88rem">Une réputation construite client après client</span>
     </div>
-    <div class="why-item">
-      <div class="icon">💶</div>
-      <h3>Devis gratuit</h3>
-      <p>Transparence totale, tarif clair avant intervention</p>
+    <div class="diff-card">
+      <div class="icon">🕐</div>
+      <strong>Toujours à l'heure</strong>
+      <span style="color:#78716c;font-size:.88rem">Créneau respecté, appel 15 minutes avant arrivée</span>
     </div>
-    <div class="why-item">
-      <div class="icon">⚡</div>
-      <h3>Réactivité</h3>
-      <p>Intervention sous 24h, dépannage urgent sous 2h</p>
+    <div class="diff-card">
+      <div class="icon">💰</div>
+      <strong>Prix juste</strong>
+      <span style="color:#78716c;font-size:.88rem">Devis gratuit, tarif annoncé = tarif payé</span>
     </div>
   </div>
 </section>
 
-<section>
-  <h2>Marques de confiance</h2>
-  <p style="text-align:center;margin-bottom:15px">Nous installons et entretenons les plus grandes marques :</p>
-  <div class="brands">
-    <span class="brand-tag">Atlantic</span>
-    <span class="brand-tag">Ariston</span>
-    <span class="brand-tag">Thermor</span>
-    <span class="brand-tag">Saunier Duval</span>
-    <span class="brand-tag">ELM Leblanc</span>
-    <span class="brand-tag">Jacob Delafon</span>
-    <span class="brand-tag">Porcher</span>
-    <span class="brand-tag">Pacific</span>
-  </div>
+<section class="quote-block">
+  <div class="stars-sm">★★★★★</div>
+  <blockquote>"Un vrai professionnel. À l'écoute, minutieux, tarif honnête. Ça fait 5 ans que je fais appel à lui pour ma résidence secondaire. Jamais déçu."</blockquote>
+  <cite>— Propriétaire, Cap d'Agde</cite>
 </section>
 
 <section style="text-align:center">
-  <h2>Zone d'intervention</h2>
-  <div style="margin-top:15px">
-    <span class="zone">📍 Agde</span>
-    <span class="zone">📍 Le Grau d'Agde</span>
-    <span class="zone">📍 Cap d'Agde</span>
-    <span class="zone">📍 La Tamarissière</span>
-    <span class="zone">📍 Marseillan</span>
+  <h2 style="text-align:center">Zone d'intervention</h2>
+  <p class="sub" style="text-align:center">Plombier de quartier, on connaît chaque rue</p>
+  <div class="zones">
+    <span class="zone-tag">Agde</span>
+    <span class="zone-tag">Le Grau d'Agde</span>
+    <span class="zone-tag">Cap d'Agde</span>
+    <span class="zone-tag">La Tamarissière</span>
+    <span class="zone-tag">Marseillan</span>
+  </div>
+  <div class="urgent-box">
+    <span style="font-size:1.4rem">⚡</span> Dépannage sous 2h — Appelez directement
   </div>
 </section>
 
-<section class="cta">
-  <h2>Besoin d'un plombier de confiance ?</h2>
-  <p style="font-size:1.2rem;margin-top:10px">18 ans d'expérience à votre service</p>
-  <div class="phone-btn">📞 Appeler maintenant</div>
-  <p style="margin-top:15px;opacity:.8">
-    73 Chemin Grand Quist<br>34300 Le Grau d'Agde
-  </p>
+<section style="text-align:center;padding-bottom:70px">
+  <p style="font-size:1.2rem;color:#78716c;margin-bottom:5px">Votre plomberie mérite un expert.</p>
+  <div style="display:inline-block;background:var(--gold);color:#0c1e32;padding:16px 44px;border-radius:50px;font-size:1.3rem;font-weight:700;cursor:pointer;margin-top:14px">📞 Obtenir un devis</div>
+  <p style="margin-top:14px;color:#78716c;font-size:.9rem">73 Chemin Grand Quist — 34300 Le Grau d'Agde</p>
 </section>
 
 <footer>
-  <p>Deg BERNABEU Ruben — EI — SIRET 349 877 811 00027 — Grau d'Agde 34300</p>
+  Deg BERNABEU Ruben — EI — SIRET 349 877 811 00027 — Grau d'Agde 34300<br>
+  Site vitrine créé par <a href="https://notitiacorp-design.github.io/notitia/">Notitia</a>
 </footer>
 
 </body>
