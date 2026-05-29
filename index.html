@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notitia — Assistant digital & créateur de sites web</title>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Georgia,'Times New Roman',serif;color:#1a1a1a;background:#fafaf7;line-height:1.6}
+  .wrap{max-width:720px;margin:0 auto;padding:2rem 1.5rem}
+  header{padding:3rem 0 2rem;border-bottom:1px solid #e0dcd5}
+  h1{font-size:2.2rem;font-weight:400;letter-spacing:-0.5px;margin-bottom:.5rem}
+  .tagline{font-size:1.1rem;color:#6b6358}
+  .services{margin:3rem 0}
+  .service{display:flex;justify-content:space-between;align-items:baseline;padding:1.2rem 0;border-bottom:1px solid #e8e4db;gap:1rem}
+  .service:last-child{border-bottom:none}
+  .service-name{font-size:1.15rem}
+  .service-desc{font-size:.9rem;color:#6b6358;margin-top:2px}
+  .service-price{font-size:1.1rem;white-space:nowrap;font-weight:600}
+  .service a{display:inline-block;margin-top:6px;font-size:.85rem;color:#c4552b;text-decoration:none;border-bottom:1px solid #c4552b;padding-bottom:1px}
+  .service a:hover{color:#a34422;border-color:#a34422}
+  .cta{margin:3rem 0 1rem}
+  .cta p{font-size:1.05rem;color:#4a4238;margin-bottom:1rem}
+  .contact-box{background:#f3f0eb;padding:1.5rem;border-radius:4px;margin:1rem 0}
+  .contact-box a{color:#c4552b;text-decoration:none}
+  .contact-box a:hover{text-decoration:underline}
+  footer{padding:2rem 0;color:#9b9488;font-size:.85rem;border-top:1px solid #e0dcd5;margin-top:2rem}
+  @media(max-width:500px){
+    .service{flex-direction:column;gap:.3rem}
+    h1{font-size:1.8rem}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Notitia</h1>
+    <p class="tagline">Assistant digital indépendant. Sites web, administratif, fiscalité.</p>
+    <p class="tagline" style="font-size:.9rem;margin-top:8px">Basé à Torcy — intervention partout en France à distance.</p>
+  </header>
+
+  <section class="services">
+    <div class="service">
+      <div>
+        <div class="service-name">Création site web vitrine</div>
+        <div class="service-desc">One-page, multi-pages, restaurant, e-commerce</div>
+      </div>
+      <div style="text-align:right">
+        <div class="service-price">à partir de 500€</div>
+        <a href="#contact">Me contacter</a>
+      </div>
+    </div>
+
+    <div class="service">
+      <div>
+        <div class="service-name">Déclaration d'impôt sur le revenu</div>
+        <div class="service-desc">Salarié ou indépendant, déclaration simple ou complexe</div>
+      </div>
+      <div style="text-align:right">
+        <div class="service-price">80€</div>
+        <a href="#contact">Me contacter</a>
+      </div>
+    </div>
+
+    <div class="service">
+      <div>
+        <div class="service-name">Clôture / radiation de société</div>
+        <div class="service-desc">SAS, SARL, EURL via guichet unique INPI</div>
+      </div>
+      <div style="text-align:right">
+        <div class="service-price">250€</div>
+        <a href="#contact">Me contacter</a>
+      </div>
+    </div>
+
+    <div class="service">
+      <div>
+        <div class="service-name">Assistance administrative</div>
+        <div class="service-desc">Gestion de mails, saisie, classement, relances</div>
+      </div>
+      <div style="text-align:right">
+        <div class="service-price">120€ / forfait 3h</div>
+        <a href="#contact">Me contacter</a>
+      </div>
+    </div>
+
+    <div class="service">
+      <div>
+        <div class="service-name">Référencement Google (GMB)</div>
+        <div class="service-desc">Optimisation fiche Google My Business, mots-clés locaux</div>
+      </div>
+      <div style="text-align:right">
+        <div class="service-price">80€</div>
+        <a href="#contact">Me contacter</a>
+      </div>
+    </div>
+
+    <div class="service">
+      <div>
+        <div class="service-name">Dépannage informatique</div>
+        <div class="service-desc">Windows, macOS, smartphone, mail, logiciels</div>
+      </div>
+      <div style="text-align:right">
+        <div class="service-price">40€ / heure</div>
+        <a href="#contact">Me contacter</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" id="contact">
+    <div class="contact-box">
+      <p><strong>Une question ? Un projet ?</strong> Dites-moi ce dont vous avez besoin et je vous réponds dans la journée.</p>
+      <p>WhatsApp : <a href="https://wa.me/33753197320">07 53 19 73 20</a></p>
+      <p>Email : <a href="mailto:notitiacorp@gmail.com">notitiacorp@gmail.com</a></p>
+    </div>
+  </section>
+
+  <footer>
+    Notitia — Quentin Convert — SIRET à venir — Basé à Torcy (Seine-et-Marne)
+  </footer>
+</div>
+</body>
+</html>
