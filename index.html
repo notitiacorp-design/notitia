@@ -1,123 +1,190 @@
-<!DOCTYPE html>
-<html lang="fr">
+<!doctype html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Notitia — Assistant digital & créateur de sites web</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Notitia — AI & Automation Engineer. I build tools that work.">
+<title>Notitia — AI &amp; Automation</title>
 <style>
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:Georgia,'Times New Roman',serif;color:#1a1a1a;background:#fafaf7;line-height:1.6}
-  .wrap{max-width:720px;margin:0 auto;padding:2rem 1.5rem}
-  header{padding:3rem 0 2rem;border-bottom:1px solid #e0dcd5}
-  h1{font-size:2.2rem;font-weight:400;letter-spacing:-0.5px;margin-bottom:.5rem}
-  .tagline{font-size:1.1rem;color:#6b6358}
-  .services{margin:3rem 0}
-  .service{display:flex;justify-content:space-between;align-items:baseline;padding:1.2rem 0;border-bottom:1px solid #e8e4db;gap:1rem}
-  .service:last-child{border-bottom:none}
-  .service-name{font-size:1.15rem}
-  .service-desc{font-size:.9rem;color:#6b6358;margin-top:2px}
-  .service-price{font-size:1.1rem;white-space:nowrap;font-weight:600}
-  .service a{display:inline-block;margin-top:6px;font-size:.85rem;color:#c4552b;text-decoration:none;border-bottom:1px solid #c4552b;padding-bottom:1px}
-  .service a:hover{color:#a34422;border-color:#a34422}
-  .cta{margin:3rem 0 1rem}
-  .cta p{font-size:1.05rem;color:#4a4238;margin-bottom:1rem}
-  .contact-box{background:#f3f0eb;padding:1.5rem;border-radius:4px;margin:1rem 0}
-  .contact-box a{color:#c4552b;text-decoration:none}
-  .contact-box a:hover{text-decoration:underline}
-  footer{padding:2rem 0;color:#9b9488;font-size:.85rem;border-top:1px solid #e0dcd5;margin-top:2rem}
-  @media(max-width:500px){
-    .service{flex-direction:column;gap:.3rem}
-    h1{font-size:1.8rem}
-  }
+:root {
+  --bg: #0b0b0b;
+  --surface: #151515;
+  --text: #e0e0e0;
+  --dim: #858585;
+  --accent: #6c8cff;
+  --accent-dim: #4a6ad1;
+  --radius: 6px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale
+}
+a{color:var(--accent);text-decoration:none;transition:color .2s}
+a:hover{color:var(--accent-dim)}
+
+section{padding:clamp(3rem,10vw,8rem) 1.25rem}
+.container{max-width:820px;margin:0 auto}
+h1{font-size:clamp(2.2rem,6vw,3.6rem);font-weight:700;letter-spacing:-.03em;line-height:1.1}
+h2{font-size:clamp(1.1rem,2.5vw,1.35rem);font-weight:600;color:var(--dim);text-transform:uppercase;letter-spacing:.08em;margin-bottom:2.5rem}
+h3{font-size:1.15rem;font-weight:600;margin-bottom:.5rem;color:#f0f0f0}
+
+.fade{opacity:0;transform:translateY(18px);transition:opacity .6s ease-out,transform .6s ease-out}
+.fade.visible{opacity:1;transform:translateY(0)}
+
+/* Hero */
+.hero{min-height:85vh;display:flex;align-items:center}
+.hero .tag{
+  display:inline-block;
+  font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--accent);border:1px solid rgba(108,140,255,.25);border-radius:20px;
+  padding:.35rem 1rem;margin-bottom:2rem
+}
+.hero h1{margin-bottom:.5rem}
+.hero .sub{font-size:clamp(1.05rem,3vw,1.35rem);color:var(--dim);font-weight:400;margin-bottom:2.5rem}
+.hero .tagline{font-size:1rem;color:#b0b0b0;max-width:480px;line-height:1.7}
+
+/* About */
+.about .text{font-size:1.05rem;color:#c0c0c0;max-width:620px;line-height:1.75}
+.about .text p+p{margin-top:1.25rem}
+
+/* Services */
+.services .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem}
+.services .card{
+  background:var(--surface);
+  border:1px solid rgba(255,255,255,.05);
+  border-radius:var(--radius);
+  padding:1.75rem 1.5rem;
+  transition:border-color .25s
+}
+.services .card:hover{border-color:rgba(108,140,255,.2)}
+.services .card p{font-size:.92rem;color:var(--dim);line-height:1.6;margin-top:.5rem}
+.services .icon{font-size:1.4rem;margin-bottom:.75rem}
+
+/* Stack */
+.stack .badges{display:flex;flex-wrap:wrap;gap:.6rem}
+.stack .badge{
+  background:rgba(108,140,255,.08);
+  color:var(--accent);
+  border:1px solid rgba(108,140,255,.15);
+  border-radius:20px;
+  padding:.4rem .9rem;
+  font-size:.82rem;font-weight:500;letter-spacing:.02em;
+  transition:background .2s
+}
+.stack .badge:hover{background:rgba(108,140,255,.15)}
+
+/* Contact */
+.contact .email{
+  font-size:1.25rem;font-weight:500;color:var(--accent);
+  word-break:break-all;display:inline-block;margin-bottom:1.5rem
+}
+.contact .meta{font-size:.88rem;color:var(--dim);line-height:1.7}
+.contact .meta .sep{color:rgba(255,255,255,.12);margin:0 .6rem}
+
+/* Divider */
+hr{border:0;border-top:1px solid rgba(255,255,255,.06);margin:0}
+
+/* Responsive */
+@media(max-width:540px){
+  .hero{min-height:75vh}
+  .services .grid{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <h1>Notitia</h1>
-    <p class="tagline">Assistant digital indépendant. Sites web, administratif, fiscalité.</p>
-    <p class="tagline" style="font-size:.9rem;margin-top:8px">Basé à Torcy — intervention partout en France à distance.</p>
-  </header>
 
-  <section class="services">
-    <div class="service">
-      <div>
-        <div class="service-name">Création site web vitrine</div>
-        <div class="service-desc">One-page, multi-pages, restaurant, e-commerce</div>
-      </div>
-      <div style="text-align:right">
-        <div class="service-price">à partir de 500€</div>
-        <a href="#contact">Me contacter</a>
-      </div>
-    </div>
-
-    <div class="service">
-      <div>
-        <div class="service-name">Déclaration d'impôt sur le revenu</div>
-        <div class="service-desc">Salarié ou indépendant, déclaration simple ou complexe</div>
-      </div>
-      <div style="text-align:right">
-        <div class="service-price">80€</div>
-        <a href="https://buy.stripe.com/7sY28k76L140eKG3oQ2sM03">Payer</a>
-      </div>
-    </div>
-
-    <div class="service">
-      <div>
-        <div class="service-name">Clôture / radiation de société</div>
-        <div class="service-desc">SAS, SARL, EURL via guichet unique INPI</div>
-      </div>
-      <div style="text-align:right">
-        <div class="service-price">250€</div>
-        <a href="https://buy.stripe.com/dRmfZa62H284auq4sU2sM04">Payer</a>
-      </div>
-    </div>
-
-    <div class="service">
-      <div>
-        <div class="service-name">Assistance administrative</div>
-        <div class="service-desc">Gestion de mails, saisie, classement, relances</div>
-      </div>
-      <div style="text-align:right">
-        <div class="service-price">120€ / forfait 3h</div>
-        <a href="https://buy.stripe.com/6oUaEQezd3c81XU9Ne2sM06">Payer</a>
-      </div>
-    </div>
-
-    <div class="service">
-      <div>
-        <div class="service-name">Référencement Google (GMB)</div>
-        <div class="service-desc">Optimisation fiche Google My Business, mots-clés locaux</div>
-      </div>
-      <div style="text-align:right">
-        <div class="service-price">80€</div>
-        <a href="https://buy.stripe.com/28E8wI2Qv8wsdGC7F62sM05">Payer</a>
-      </div>
-    </div>
-
-    <div class="service">
-      <div>
-        <div class="service-name">Dépannage informatique</div>
-        <div class="service-desc">Windows, macOS, smartphone, mail, logiciels</div>
-      </div>
-      <div style="text-align:right">
-        <div class="service-price">40€ / heure</div>
-        <a href="#contact">Me contacter</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="cta" id="contact">
-    <div class="contact-box">
-      <p><strong>Une question ? Un projet ?</strong> Dites-moi ce dont vous avez besoin et je vous réponds dans la journée.</p>
-      <p>WhatsApp : <a href="https://wa.me/33753197320">07 53 19 73 20</a></p>
-      <p>Email : <a href="mailto:notitiacorp@gmail.com">notitiacorp@gmail.com</a></p>
-    </div>
-  </section>
-
-  <footer>
-    Notitia — Quentin Convert — SIRET à venir — Basé à Torcy (Seine-et-Marne)
-  </footer>
+<section class="hero">
+<div class="container fade">
+  <span class="tag">Available for work</span>
+  <h1>Notitia</h1>
+  <p class="sub">AI &amp; Automation Engineer</p>
+  <p class="tagline">I build tools that work. For businesses that need results.</p>
 </div>
+</section>
+
+<hr>
+
+<section class="about">
+<div class="container fade">
+  <h2>About</h2>
+  <div class="text">
+    <p>Quentin Convert, 24. Based in Torcy, near Paris. Studied computer science in Montpellier. Self-taught coder since 16.</p>
+    <p>Background in accounting gives me an edge. I understand business logic, not just code. Currently independent, working with small businesses to automate their operations and integrate AI where it matters.</p>
+  </div>
+</div>
+</section>
+
+<hr>
+
+<section class="services">
+<div class="container fade">
+  <h2>Services</h2>
+  <div class="grid">
+    <div class="card">
+      <div class="icon">⚙️</div>
+      <h3>AI Integration</h3>
+      <p>LLM-powered tools, chatbots, document analysis, data extraction. I make AI useful for real business problems, not just demos.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🔄</div>
+      <h3>Automation</h3>
+      <p>Workflow automation, API integrations, data pipelines. If it's repetitive, I automate it.</p>
+    </div>
+    <div class="card">
+      <div class="icon">◈</div>
+      <h3>Web Development</h3>
+      <p>Full-stack apps with React, Python, Supabase. Clean, fast, and maintainable.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<hr>
+
+<section class="stack">
+<div class="container fade">
+  <h2>Stack</h2>
+  <div class="badges">
+    <span class="badge">Python</span>
+    <span class="badge">JavaScript</span>
+    <span class="badge">React</span>
+    <span class="badge">Node.js</span>
+    <span class="badge">Supabase</span>
+    <span class="badge">PostgreSQL</span>
+    <span class="badge">Stripe</span>
+    <span class="badge">APIs</span>
+    <span class="badge">LLMs</span>
+    <span class="badge">Prompt Engineering</span>
+  </div>
+</div>
+</section>
+
+<hr>
+
+<section class="contact">
+<div class="container fade">
+  <h2>Contact</h2>
+  <a href="mailto:convertquentin@gmail.com" class="email">convertquentin@gmail.com</a>
+  <p class="meta">Torcy, Île-de-France<span class="sep">·</span>Available for freelance &amp; remote AI training projects</p>
+</div>
+</section>
+
+<script>
+(function(){
+  var els=document.querySelectorAll('.fade');
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}
+    })
+  },{threshold:.15});
+  els.forEach(function(el){obs.observe(el)})
+})();
+</script>
 </body>
 </html>
