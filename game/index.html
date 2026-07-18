@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Conquest — Notitia</title>
+<style>
+:root {
+  --bg: #0a0a0e; --surface: #14141c; --text: #e0e0e0; --dim: #6b6b80;
+  --accent: #6c8cff; --red: #e74c3c; --blue: #3498db; --green: #2ecc71; --yellow: #f1c40f;
+  --gold: #d4a843; --danger: #c0392b;
+}
+*{box-sizing:border-box;margin:0}
+html{font-size:16px}
+body{
+  font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  background:var(--bg); color:var(--text); min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--accent);text-decoration:none}
+
+/* Header */
+header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1rem 1.5rem;background:var(--surface);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+header .logo{font-weight:700;font-size:1.1rem;letter-spacing:-.02em}
+header .logo span{color:var(--accent)}
+nav a{margin-left:1.5rem;font-size:.88rem;color:var(--dim);transition:color .2s}
+nav a:hover,nav a.active{color:var(--text)}
+
+/* Main layout */
+main{max-width:1100px;margin:0 auto;padding:1.5rem}
+h1{font-size:1.6rem;font-weight:700;margin-bottom:.5rem}
+
+/* Lobby */
+.lobby{text-align:center;padding:4rem 1rem}
+.lobby h2{font-size:2rem;margin-bottom:1rem}
+.lobby p{color:var(--dim);margin-bottom:2rem}
+.btn{
+  display:inline-block;padding:.85rem 2rem;border-radius:8px;font-weight:600;
+  font-size:.95rem;cursor:pointer;border:none;transition:all .2s;
+  font-family:inherit;letter-spacing:.01em;
+}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:#5a7de6;transform:translateY(-1px)}
+.btn-outline{
+  background:transparent;color:var(--accent);border:1.5px solid rgba(108,140,255,.3);
+}
+.btn-outline:hover{background:rgba(108,140,255,.08)}
+.btn-danger{background:var(--danger);color:#fff}
+.btn-sm{padding:.5rem 1.2rem;font-size:.82rem}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.actions{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
+.input{
+  background:var(--surface);border:1px solid rgba(255,255,255,.1);
+  color:var(--text);padding:.75rem 1rem;border-radius:6px;font-size:.95rem;
+  width:220px;font-family:inherit;text-align:center;letter-spacing:.1em;
+}
+.input:focus{outline:none;border-color:var(--accent)}
+
+/* Game container */
+.game-container{display:none}
+.game-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:1rem;flex-wrap:wrap;gap:.75rem;
+}
+.phase-indicator{
+  padding:.4rem 1rem;border-radius:20px;font-size:.82rem;font-weight:600;
+  border:1px solid rgba(255,255,255,.1);
+}
+.player-info{display:flex;gap:.5rem;flex-wrap:wrap}
+.player-badge{
+  display:flex;align-items:center;gap:.5rem;padding:.35rem .8rem;
+  border-radius:20px;font-size:.82rem;font-weight:600;
+  border:2px solid transparent;background:var(--surface);
+}
+.player-badge.active{border-color:var(--gold);color:var(--gold)}
+.player-badge .dot{width:10px;height:10px;border-radius:50%}
+
+/* Board */
+.board-wrap{position:relative;margin:1rem 0}
+canvas{display:block;margin:0 auto;border-radius:12px;background:#0d0d14;max-width:100%}
+
+/* Controls */
+.controls{
+  background:var(--surface);border-radius:10px;padding:1.25rem;
+  border:1px solid rgba(255,255,255,.06);
+}
+.controls h3{font-size:.95rem;margin-bottom:.75rem;color:var(--dim);text-transform:uppercase;letter-spacing:.06em}
+.controls p{margin-bottom:.5rem;font-size:.9rem}
+.combat-log{max-height:180px;overflow-y:auto;font-size:.82rem;color:var(--dim);margin-top:.75rem}
+.combat-log div{padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.combat-log .win{color:#2ecc71}
+.combat-log .lose{color:#e74c3c}
+.troop-select{display:flex;gap:.35rem;flex-wrap:wrap;margin:.5rem 0}
+.troop-select button{
+  width:38px;height:38px;border-radius:8px;border:1px solid rgba(255,255,255,.1);
+  background:var(--bg);color:var(--text);cursor:pointer;font-weight:600;font-size:.85rem;
+}
+.troop-select button:hover{border-color:var(--accent)}
+.troop-select button.sel{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+/* Overlay */
+.overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.85);display:flex;
+  align-items:center;justify-content:center;z-index:100;
+}
+.overlay-box{
+  background:var(--surface);border-radius:12px;padding:2.5rem;
+  text-align:center;max-width:400px;width:90%;border:1px solid rgba(255,255,255,.08);
+}
+.overlay-box h2{font-size:1.5rem;margin-bottom:.75rem}
+.overlay-box p{color:var(--dim);margin-bottom:1.5rem}
+
+/* Room info */
+.room-code{
+  font-size:1.8rem;letter-spacing:.15em;font-weight:700;color:var(--accent);
+  margin:.5rem 0;padding:.5rem 1rem;background:rgba(108,140,255,.08);
+  border-radius:8px;display:inline-block;
+}
+
+/* Toast */
+.toast{
+  position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);
+  background:var(--surface);color:var(--text);padding:.6rem 1.2rem;
+  border-radius:8px;font-size:.85rem;z-index:200;border:1px solid rgba(255,255,255,.1);
+  animation:toastIn .3s ease-out;
+}
+@keyframes toastIn{from{opacity:0;transform:translateX(-50%) translateY(10px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+
+/* Dice */
+.dice-result{font-size:1.4rem;font-weight:700;display:flex;gap:.5rem;justify-content:center;margin:.5rem 0}
+.dice-result span{background:var(--bg);border-radius:6px;padding:.3rem .6rem;min-width:36px;text-align:center}
+
+/* Help tooltip */
+.help{font-size:.78rem;color:var(--dim);margin-top:.5rem;line-height:1.4}
+
+@media(max-width:700px){
+  main{padding:.75rem}
+  .lobby h2{font-size:1.4rem}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Notitia<span>Game</span></div>
+  <nav>
+    <a href="../">← Notitia</a>
+  </nav>
+</header>
+
+<main>
+  <!-- Lobby -->
+  <div class="lobby" id="lobby">
+    <h2>⚔️ Conquest</h2>
+    <p>Jeu de stratégie multijoueur. Conquérez les territoires, éliminez vos adversaires.</p>
+    <div class="actions">
+      <button class="btn btn-primary" onclick="createGame()">Créer une partie</button>
+      <button class="btn btn-outline" onclick="showJoin()">Rejoindre</button>
+    </div>
+    <div id="join-form" style="display:none;margin-top:2rem">
+      <p style="margin-bottom:.75rem">Code de la room :</p>
+      <div style="display:flex;gap:.5rem;justify-content:center">
+        <input class="input" id="room-input" maxlength="6" placeholder="ABC123" autocomplete="off">
+        <button class="btn btn-primary btn-sm" onclick="joinGame()">Rejoindre</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Game Room -->
+  <div class="game-container" id="game-container">
+    <div class="game-header">
+      <div>
+        <h1 id="room-title" style="margin-bottom:.25rem;font-size:1.2rem">Room: —</h1>
+        <span class="phase-indicator" id="phase-label">En attente...</span>
+      </div>
+      <div class="player-info" id="player-list"></div>
+    </div>
+    <div class="board-wrap">
+      <canvas id="board" width="900" height="600"></canvas>
+    </div>
+    <div class="controls" id="controls">
+      <h3 id="action-title">Votre tour</h3>
+      <p id="action-info">Sélectionnez un territoire pour commencer.</p>
+      <div id="action-buttons" class="actions" style="margin:.75rem 0"></div>
+      <div id="troop-selector" class="troop-select" style="display:none"></div>
+      <div id="dice-display" class="dice-result" style="display:none"></div>
+      <div class="combat-log" id="combat-log"></div>
+      <p class="help" id="help-text"></p>
+    </div>
+  </div>
+</main>
+
+<script>
+// ════════════════ GAME ENGINE ════════════════
+const COLORS = ['#e74c3c','#3498db','#2ecc71','#f1c40f'];
+const COLOR_NAMES = ['Rouge','Bleu','Vert','Jaune'];
+const TERRITORIES = [
+  {id:0,x:2,y:0,name:'Pic du Nord'},{id:1,x:4,y:0,name:'Portes de Fer'},{id:2,x:6,y:0,name:'Mur de Glace'},
+  {id:3,x:1,y:2,name:'Vallée Verte'},{id:4,x:3,y:2,name:'Bois Sombre'},{id:5,x:5,y:2,name:'Plaine d\'Or'},
+  {id:6,x:7,y:2,name:'Falaises'},{id:7,x:0,y:4,name:'Désert Rouge'},{id:8,x:2,y:4,name:'Oasis'},
+  {id:9,x:4,y:4,name:'Grande Forêt'},{id:10,x:6,y:4,name:'Île Brumeuse'},{id:11,x:8,y:4,name:'Cap Est'},
+  {id:12,x:1,y:6,name:'Ruines'},{id:13,x:3,y:6,name:'Citadelle'},{id:14,x:5,y:6,name:'Port Sud'},
+  {id:15,x:7,y:6,name:'Marais'},{id:16,x:0,y:8,name:'Tour de Garde'},{id:17,x:2,y:8,name:'Carrefour'},
+  {id:18,x:4,y:8,name:'Col du Dragon'},{id:19,x:6,y:8,name:'Île aux Serpents'},{id:20,x:8,y:8,name:'Phare'},
+  {id:21,x:2,y:10,name:'Sanctuaire'},{id:22,x:4,y:10,name:'Port Royal'},{id:23,x:6,y:10,name:'Forteresse'}
+];
+const ADJ = [
+  [1,3],[0,2,3,4],[1,5],[0,1,4,7],[1,3,5,8],[2,4,6,9],[5,10,11],[3,8],[4,7,9,12],[5,8,10,13],
+  [6,9,11,14],[6,10,15],[8,13,16],[9,12,14,17],[10,13,15,18],[11,14,19],[12,17],[13,16,18,21],
+  [14,17,19,22],[15,18,20,23],[19,23],[17,22],[18,21,23],[19,20,22]
+];
+const HEX_W=72, HEX_H=62;
+const OFFSETS = TERRITORIES.map(t => {
+  const odd = t.y % 4 !== 0;
+  return {
+    x: 80 + t.x * HEX_W * 0.75 + (odd ? HEX_W*0.375 : 0),
+    y: 50 + t.y * HEX_H * 0.5
+  };
+});
+
+let gameState = null, myPlayerId = null, roomCode = null, ws = null;
+let selectedTerritory = null, attackSource = null, phase = null, troopCount = 0;
+
+// ════════════════ CANVAS RENDER ════════════════
+const canvas = document.getElementById('board');
+const ctx = canvas.getContext('2d');
+
+function drawHex(cx, cy, r, fill, stroke, label) {
+  ctx.beginPath();
+  for(let i=0;i<6;i++) {
+    const a = Math.PI/6 + i*Math.PI/3;
+    ctx.lineTo(cx + r*Math.cos(a), cy + r*Math.sin(a));
+  }
+  ctx.closePath();
+  ctx.fillStyle = fill; ctx.fill();
+  ctx.strokeStyle = stroke; ctx.lineWidth = 2; ctx.stroke();
+  if(label) {
+    ctx.fillStyle = '#fff'; ctx.font = 'bold 18px Inter,sans-serif';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText(label, cx, cy);
+  }
+}
+
+function render(g) {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  // Draw connections
+  ctx.strokeStyle = 'rgba(255,255,255,.05)'; ctx.lineWidth = 1;
+  TERRITORIES.forEach(t => {
+    ADJ[t.id].forEach(aid => {
+      ctx.beginPath();
+      ctx.moveTo(OFFSETS[t.id].x, OFFSETS[t.id].y);
+      ctx.lineTo(OFFSETS[aid].x, OFFSETS[aid].y);
+      ctx.stroke();
+    });
+  });
+  // Draw territories
+  TERRITORIES.forEach(t => {
+    const pos = OFFSETS[t.id];
+    const owner = g.owners[t.id];
+    const troops = g.troops[t.id];
+    const fill = owner >= 0 ? COLORS[owner] : '#1a1a24';
+    const stroke = selectedTerritory === t.id ? '#fff' : 
+                   attackSource === t.id ? '#f1c40f' : 'rgba(255,255,255,.15)';
+    drawHex(pos.x, pos.y, 28, fill, stroke, String(troops));
+    // Name
+    ctx.fillStyle = 'rgba(255,255,255,.4)'; ctx.font = '9px Inter,sans-serif';
+    ctx.textAlign = 'center'; ctx.fillText(t.name, pos.x, pos.y + 34);
+  });
+}
+
+// ════════════════ MULTIPLAYER ════════════════
+function connect(serverUrl) {
+  ws = new WebSocket(serverUrl);
+  ws.onopen = () => console.log('WS connected');
+  ws.onmessage = (e) => {
+    const msg = JSON.parse(e.data);
+    handleMessage(msg);
+  };
+  ws.onclose = () => toast('Connexion perdue. Rechargez la page.');
+}
+
+function send(msg) { if(ws && ws.readyState===WebSocket.OPEN) ws.send(JSON.stringify(msg)); }
+
+function handleMessage(msg) {
+  switch(msg.type) {
+    case 'room_created':
+      roomCode = msg.roomCode;
+      document.getElementById('room-title').textContent = `Room: ${roomCode}`;
+      document.getElementById('lobby').style.display = 'none';
+      document.getElementById('game-container').style.display = 'block';
+      updatePlayerList([{id:msg.playerId,name:'Vous',color:0}]);
+      toast(`Room créée ! Code: ${roomCode}`);
+      break;
+    case 'joined':
+      myPlayerId = msg.playerId;
+      document.getElementById('lobby').style.display = 'none';
+      document.getElementById('game-container').style.display = 'block';
+      document.getElementById('room-title').textContent = `Room: ${msg.roomCode}`;
+      toast('Connecté ! En attente des autres joueurs...');
+      break;
+    case 'player_list':
+      updatePlayerList(msg.players);
+      break;
+    case 'game_start':
+      gameState = msg.state;
+      myPlayerId = msg.playerId;
+      render(gameState);
+      updatePhase(msg.state);
+      toast('⚔️ La partie commence !');
+      break;
+    case 'state_update':
+      gameState = msg.state;
+      selectedTerritory = null; attackSource = null;
+      render(gameState);
+      updatePhase(msg.state);
+      break;
+    case 'combat_result':
+      addCombatLog(msg.attacker, msg.defender, msg.aDice, msg.dDice, msg.aLoss, msg.dLoss);
+      break;
+    case 'game_over':
+      gameState = msg.state;
+      render(gameState);
+      const wn = msg.winner === myPlayerId ? 'Vous avez gagné !' : `${COLOR_NAMES[msg.winner]} a gagné.`;
+      document.getElementById('action-info').textContent = wn;
+      document.getElementById('action-buttons').innerHTML = 
+        '<button class="btn btn-primary" onclick="location.reload()">Nouvelle partie</button>';
+      break;
+    case 'error':
+      toast(msg.message);
+      break;
+  }
+}
+
+function updatePlayerList(players) {
+  const div = document.getElementById('player-list');
+  div.innerHTML = players.map(p => {
+    const active = gameState && gameState.currentPlayer === p.id;
+    return `<div class="player-badge${active?' active':''}">
+      <span class="dot" style="background:${COLORS[p.color]}"></span>
+      ${p.name || `Joueur ${p.color+1}`}
+      ${gameState ? `(${gameState.territoryCount?.[p.color]||0} terr.)` : ''}
+    </div>`;
+  }).join('');
+}
+
+function updatePhase(state) {
+  const p = document.getElementById('phase-label');
+  const t = document.getElementById('action-title');
+  const i = document.getElementById('action-info');
+  const b = document.getElementById('action-buttons');
+  const h = document.getElementById('help-text');
+  const ts = document.getElementById('troop-selector');
+  const dd = document.getElementById('dice-display');
+  ts.style.display = 'none'; dd.style.display = 'none';
+  b.innerHTML = ''; phase = null; attackSource = null; selectedTerritory = null;
+  
+  if(state.winner !== undefined) {
+    p.textContent = 'Partie terminée'; t.textContent = 'Fin de partie';
+    i.textContent = state.winner === myPlayerId ? '🏆 Victoire !' : 'Défaite...';
+    return;
+  }
+  
+  const isMyTurn = state.currentPlayer === myPlayerId;
+  const phaseName = state.phase;
+  p.textContent = isMyTurn ? phaseName.toUpperCase() : `Tour de ${COLOR_NAMES[state.currentPlayer]}`;
+  t.textContent = isMyTurn ? 'Votre tour' : 'En attente...';
+  
+  if(!isMyTurn) {
+    i.textContent = `${COLOR_NAMES[state.currentPlayer]} réfléchit...`;
+    h.textContent = '';
+    return;
+  }
+  
+  phase = state.phase;
+  switch(state.phase) {
+    case 'reinforce':
+      troopCount = state.availableTroops || 3;
+      i.textContent = `Placez ${troopCount} renfort${troopCount>1?'s':''}. Cliquez sur vos territoires.`;
+      h.textContent = 'Chaque clic ajoute 1 troupe. Vous pouvez répartir sur plusieurs territoires.';
+      b.innerHTML = troopCount > 0 ? 
+        `<button class="btn btn-sm btn-outline" onclick="skipReinforce()">Passer (${troopCount} restants)</button>` : '';
+      if(troopCount === 0) b.innerHTML = '<button class="btn btn-primary btn-sm" onclick="endReinforce()">Terminer le placement</button>';
+      break;
+    case 'attack':
+      i.textContent = 'Attaque : sélectionnez un de vos territoires, puis un territoire ennemi adjacent.';
+      h.textContent = 'Vous devez avoir au moins 2 troupes sur le territoire attaquant. Lancez les dés pour résoudre le combat.';
+      b.innerHTML = '<button class="btn btn-sm btn-outline" onclick="endAttack()">Fin des attaques → Fortifier</button>';
+      break;
+    case 'fortify':
+      i.textContent = 'Fortification : déplacez des troupes entre deux territoires adjacents que vous contrôlez.';
+      h.textContent = 'Sélectionnez la source, puis la destination, puis le nombre de troupes (1 minimum doit rester).';
+      b.innerHTML = '<button class="btn btn-primary btn-sm" onclick="endFortify()">Terminer le tour</button>';
+      break;
+  }
+}
+
+// ════════════════ ACTIONS ════════════════
+canvas.addEventListener('click', (e) => {
+  if(!gameState || gameState.currentPlayer !== myPlayerId) return;
+  const rect = canvas.getBoundingClientRect();
+  const mx = (e.clientX - rect.left) * (canvas.width / rect.width);
+  const my = (e.clientY - rect.top) * (canvas.height / rect.height);
+  
+  let closest = -1, bestDist = Infinity;
+  TERRITORIES.forEach(t => {
+    const d = Math.hypot(OFFSETS[t.id].x - mx, OFFSETS[t.id].y - my);
+    if(d < 35 && d < bestDist) { closest = t.id; bestDist = d; }
+  });
+  if(closest < 0) return;
+  
+  if(phase === 'reinforce') {
+    if(gameState.owners[closest] !== myPlayerId) return;
+    if(troopCount <= 0) return;
+    send({type:'reinforce',territory:closest});
+    troopCount--;
+    if(troopCount <= 0) {
+      document.getElementById('action-buttons').innerHTML = 
+        '<button class="btn btn-primary btn-sm" onclick="endReinforce()">Terminer le placement</button>';
+    }
+    document.getElementById('action-info').textContent = `Placez ${troopCount} renfort${troopCount>1?'s':''}.`;
+    document.getElementById('action-buttons').innerHTML = troopCount > 0 ?
+      `<button class="btn btn-sm btn-outline" onclick="skipReinforce()">Passer (${troopCount} restants)</button>` :
+      '<button class="btn btn-primary btn-sm" onclick="endReinforce()">Terminer le placement</button>';
+  }
+  else if(phase === 'attack') {
+    if(attackSource === null) {
+      if(gameState.owners[closest] !== myPlayerId || gameState.troops[closest] < 2) return;
+      attackSource = closest; selectedTerritory = closest;
+      document.getElementById('action-info').textContent = 
+        `Attaque depuis ${TERRITORIES[closest].name}. Choisissez une cible ennemie adjacente.`;
+    } else if(gameState.owners[closest] !== myPlayerId && ADJ[attackSource].includes(closest)) {
+      // Attack!
+      startAttack(attackSource, closest);
+    } else if(closest === attackSource) {
+      attackSource = null; selectedTerritory = null;
+      document.getElementById('action-info').textContent = 'Attaque annulée. Sélectionnez un territoire à vous.';
+    }
+    render(gameState);
+  }
+  else if(phase === 'fortify') {
+    if(attackSource === null) {
+      if(gameState.owners[closest] !== myPlayerId || gameState.troops[closest] < 2) return;
+      attackSource = closest; selectedTerritory = closest;
+      document.getElementById('action-info').textContent = 
+        `Source: ${TERRITORIES[closest].name} (${gameState.troops[closest]} troupes). Choisissez la destination.`;
+    } else if(gameState.owners[closest] === myPlayerId && ADJ[attackSource].includes(closest) && closest !== attackSource) {
+      showTroopSelector(attackSource, closest);
+    } else {
+      attackSource = null; selectedTerritory = null;
+      document.getElementById('action-info').textContent = 'Fortification : sélectionnez un territoire source.';
+    }
+    render(gameState);
+  }
+});
+
+function startAttack(src, dst) {
+  send({type:'attack',from:src,to:dst});
+  attackSource = null; selectedTerritory = null;
+}
+
+function showTroopSelector(src, dst) {
+  const ts = document.getElementById('troop-selector');
+  const max = gameState.troops[src] - 1;
+  ts.style.display = 'flex';
+  ts.innerHTML = '';
+  document.getElementById('action-info').textContent = 
+    `Déplacez des troupes de ${TERRITORIES[src].name} → ${TERRITORIES[dst].name} (max ${max})`;
+  for(let i=1;i<=max;i++) {
+    const btn = document.createElement('button');
+    btn.textContent = i;
+    btn.onclick = () => {
+      send({type:'fortify',from:src,to:dst,count:i});
+      ts.style.display = 'none';
+      attackSource = null; selectedTerritory = null;
+    };
+    ts.appendChild(btn);
+  }
+}
+
+function skipReinforce() { send({type:'reinforce_done'}); }
+function endReinforce() { send({type:'reinforce_done'}); }
+function endAttack() { send({type:'attack_done'}); attackSource=null; selectedTerritory=null; }
+function endFortify() { send({type:'fortify_done'}); attackSource=null; selectedTerritory=null; }
+
+function addCombatLog(atk,def,aD,dD,aL,dL) {
+  const div = document.getElementById('combat-log');
+  const aName = TERRITORIES[atk].name, dName = TERRITORIES[def].name;
+  const cls = aL > dL ? 'lose' : dL > aL ? 'win' : '';
+  div.innerHTML = `<div class="${cls}">⚔️ ${aName} [${aD.join(',')}] vs ${dName} [${dD.join(',')}] → Attaquant: -${aL}, Défenseur: -${dL}</div>` + div.innerHTML;
+  if(div.children.length > 20) div.removeChild(div.lastChild);
+}
+
+// ════════════════ LOBBY ════════════════
+function createGame() {
+  const proto = location.protocol === 'https:' ? 'wss' : 'ws';
+  connect(`${proto}://${location.host}`);
+  ws.onopen = () => send({type:'create_room',playerCount:4});
+}
+function showJoin() {
+  document.getElementById('join-form').style.display = 'block';
+}
+function joinGame() {
+  const code = document.getElementById('room-input').value.trim().toUpperCase();
+  if(!code) return toast('Entrez un code de room');
+  const proto = location.protocol === 'https:' ? 'wss' : 'ws';
+  connect(`${proto}://${location.host}`);
+  ws.onopen = () => send({type:'join_room',roomCode:code});
+}
+
+// ════════════════ UTILS ════════════════
+let toastTimer;
+function toast(msg) {
+  const el = document.createElement('div'); el.className='toast'; el.textContent=msg;
+  document.body.appendChild(el);
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { el.remove(); }, 3000);
+}
+
+// Resize canvas
+function resize() {
+  const wrap = document.querySelector('.board-wrap');
+  canvas.style.width = Math.min(wrap.clientWidth - 8, 900) + 'px';
+}
+window.addEventListener('resize', resize);
+resize();
+</script>
+</body>
+</html>
